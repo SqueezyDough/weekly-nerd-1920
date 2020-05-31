@@ -14,15 +14,19 @@
   justify-content: center;
   position: relative;
   min-height: 30rem;
+  overflow: visible;
   margin: 4rem 0;
   color: var(--dark);
   text-decoration: none;
 }
 
 .card h3 {
+  width: 100%;
   margin: .5rem;
   font-size: 6rem;
   font-family: Futura;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .card h3::before {
@@ -49,7 +53,9 @@
 
 .card__title-list {
   height: 10rem;
-  overflow: hidden;
+  width: 110%;
+  overflow-y: hidden;
+  overflow-x: visible;
   margin: 0;
   padding: 0;
 }

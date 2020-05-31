@@ -26,7 +26,7 @@ body {
   font-size: 2rem;
   line-height: 1.5;
   margin: 0 auto;
-  max-width: 90rem;
+  max-width: 70rem;
   padding: 0 3%;
   background-color: var(--off-white);
 }
@@ -43,7 +43,7 @@ h2::before {
 header {
   display: flex;
   flex-direction: column;
-}  
+}
 
 main, header p {
   opacity: 0;
@@ -89,7 +89,7 @@ footer {
   overflow: hidden;
   position: relative;
   height: 15rem;
-  margin: 38vh 0;
+  margin: 31.5vh 0;
 }
 
 .swipe h2 {
@@ -106,7 +106,7 @@ footer {
 
 @keyframes slideIn {
   from {
-    letter-spacing: -1rem; 
+    letter-spacing: -1rem;
   } to {
     letter-spacing: 0;
   }
@@ -115,7 +115,7 @@ footer {
 @keyframes slideUp {
   0% {
     margin-top: 20rem
-  }  
+  }
   80% {
     margin: -1rem 0;
   }
