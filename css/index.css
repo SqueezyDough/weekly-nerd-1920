@@ -1,107 +1,3 @@
-:root {
-  --dark: #000;
-  --main: #52B2A4;
-  --off-white: #f9f2ed;
-  --light: #fff;
-}
-
-@font-face {
-  font-family: Futura;
-  src: url('../fonts/Futura\ Book\ font.ttf');
-}
-
-@font-face {
-  font-family: Futura-Bold;
-  src: url('../fonts/Futura\ Bold.otf');
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Futura;
-  font-size: 2rem;
-  line-height: 1.5;
-  margin: 0 auto;
-  max-width: 90rem;
-  padding: 0 3%;
-  background-color: var(--off-white);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: Futura-Bold;
-  text-transform: lowercase;
-}
-
-h2::before {
-  content: '.';
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-}  
-
-main, header p {
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 2s;
-}
-
-section:last-of-type {
-  margin-bottom: 6rem;
-}
-
-footer {
-  padding: 3rem 0;
-  font-size: 1rem;
-}
-
-.logo {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  position: absolute;
-  left: 5%;
-  top: 5%;
-}
-
-.logo img {
-  width: 2rem;
-  height: 3rem;
-  margin-right: 1rem;
-}
-
-.logo h1{
-  display: inline-block;
-  white-space: nowrap;
-  font-size: 1.75rem;
-  color: var(--dark);
-  opacity: 0;
-  animation: slideIn 1.4s forwards ease-out, fadeIn 2s ease-out forwards;
-  animation-delay: .3s;
-}
-
-.swipe {
-  overflow: hidden;
-  position: relative;
-  height: 15rem;
-  margin: 38vh 0;
-}
-
-.swipe h2 {
-  display: inline-block;
-  width: 100%;
-  opacity: 0;
-  font-size: 10rem;
-  font-family: Futura;
-  text-align: center;
-  color: var(--dark);
-  animation: slideUp 1s ease-out forwards;
-  animation-delay: 1.4s;
-}
-
 .card-container {
   display: flex;
   flex-direction: column;
@@ -146,7 +42,7 @@ footer {
   max-width: 40rem;
   height: 25rem;
   object-fit: cover;
-  background-color: #eaded5;
+  background-color: var(--beige);
   border: none;
   z-index: -1;
 }
@@ -165,34 +61,4 @@ footer {
 
 .card:hover .card__title-list li:first-of-type {
   margin-top: -10rem;
-}
-
-@keyframes slideIn {
-  from {
-    letter-spacing: -1rem; 
-  } to {
-    font-size: 1.75rem;
-    letter-spacing: 0;
-  }
-}
-
-@keyframes slideUp {
-  0% {
-    margin-top: 20rem
-  }  
-  80% {
-    margin: -1rem 0;
-  }
-  100% {
-    margin: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  } to {
-    opacity: 1;
-  }
 }

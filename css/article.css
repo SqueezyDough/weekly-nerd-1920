@@ -1,0 +1,23 @@
+article {
+  font-size: 1.5rem;
+}
+
+blockquote {
+  margin: 0;
+  padding: 1rem;
+  background-color: var(--beige);
+  border-radius: 3px;
+  border-left: 3px solid var(--dark);
+}
+
+pre {
+  margin: 1rem 0;
+  padding: 0 1rem;
+  background-color: var(--code);
+  border-radius: 3px;
+  border-left: 3px solid var(--dark);
+}
+
+code {
+  color: var(--beige);
+}
