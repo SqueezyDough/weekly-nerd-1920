@@ -27,6 +27,7 @@
   font-family: Futura;
   white-space: nowrap;
   overflow: visible;
+  transition: .5s;
 }
 
 .card h3::before {
@@ -49,22 +50,45 @@
   background-color: var(--beige);
   border: none;
   z-index: -1;
+  transition: .5s;
 }
 
 .card__title-list {
-  height: 10rem;
-  width: 110%;
-  overflow-y: hidden;
-  overflow-x: visible;
+  height: 9rem;
+  width: 115%;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
 
 .card__title-list li {
+  position: absolute;
   list-style-type: none;
   transition: .5s;
 }
 
+.card:hover h3 {
+  letter-spacing: 1rem;
+}
+
+.card:hover img {
+  transform: translateY(-50%) scale(.95);
+}
+
 .card:hover .card__title-list li:first-of-type {
   margin-top: -10rem;
+}
+
+.card:hover .card__title-list li:first-of-type h3 {
+  opacity: 0;
+  transition: .2s;
+}
+
+.card .card__title-list li:last-of-type h3 {
+  opacity: 0;
+  transition: .2s;
+}
+
+.card:hover .card__title-list li:last-of-type h3 {
+  opacity: 1;
 }

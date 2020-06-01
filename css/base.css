@@ -26,6 +26,7 @@ body {
   font-size: 2rem;
   line-height: 1.5;
   margin: 0 auto;
+  width: 100%;
   max-width: 70rem;
   padding: 0 3%;
   background-color: var(--off-white);
@@ -43,6 +44,7 @@ h2::before {
 header {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 main, header p {
