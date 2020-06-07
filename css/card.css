@@ -120,3 +120,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.card.-next:hover img {
+  transform: translate(-50%, -50%) scale(.95);
+  filter: opacity(66%);
+}
