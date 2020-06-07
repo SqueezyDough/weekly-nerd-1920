@@ -41,6 +41,15 @@ h2::before {
   content: '.';
 }
 
+a {
+  color: var(--main)
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -60,6 +69,16 @@ section:last-of-type {
 footer {
   padding: 3rem 0;
   font-size: 1rem;
+} 
+
+article section {
+  margin: 2rem 0 6rem;
+}
+
+article section img {
+  display: block;
+  width: 100%;
+  margin: 1rem 0 3rem;
 }
 
 .logo {
@@ -90,13 +109,11 @@ footer {
 .swipe {
   overflow: hidden;
   position: relative;
-  height: 15rem;
+  min-height: 15rem;
   margin: 31.5vh 0;
 }
 
 .swipe h2 {
-  display: inline-block;
-  width: 100%;
   opacity: 0;
   font-size: 10rem;
   font-family: Futura;
