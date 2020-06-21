@@ -27,7 +27,7 @@ body {
   line-height: 1.5;
   margin: 0 auto;
   width: 100%;
-  max-width: 70rem;
+  max-width: 75rem;
   padding: 0 3%;
   background-color: var(--off-white);
 }
