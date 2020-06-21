@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/png" href="../images/vanbljw.png"/>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/article.css">
+  <link rel="stylesheet" href="../css/card.css">
+  <title>Weekly Nerd - Minor Web Development - CMD Amsterdam</title>
+</head>
+<body>
+  <header class='header'>
+    <a href="../index.html">
+      <div class="logo">
+        <img src="../images/vanbljw.png">
+        <h1>Van bljw</h1>
+      </div>
+    </a>  
+   
+    <div class="swipe">
+      <h2>Functional Programming</h2>
+    </div>
+    
+    <p>
+      I see functional programming as a street where little factories are located. Each time a function is called, 
+      these little factories are processing the data until you're at the very end off that street - Justus Sturkenboom.
+    </p>
+  </header>
+  <main>
+    <article>
+      <section>
+        <p>
+          Originally a lecture from Hidde de Vries was planned for this weekly Nerd, but during that week I got sick. This lecture
+          from Justus Sturkenboom serves as a subsitute.
+        </p>   
+      </section>
+
+      <section>
+        <h3>Programming paradigms</h3>
+      
+        <p>
+          In the world of programming languages its important to know about programming paradigms.
+        </p>
+
+        <blockquote>
+          A programming paradigm is an approach to solve problem using some programming language - <a href="https://www.geeksforgeeks.org/introduction-of-programming-paradigms/">Geeksforgeeks</a>
+        </blockquote>   
+
+        <p>
+          Most programming languages are strictly tuned to fit a programming paradigm, for example Haskell is a pure 
+          functional programming language, where Java is am object oriented programming (OOP) language. There are other paradigms as well, but these 
+          two are by far the most popular among developers.
+        </p>
+
+        <p>
+          Javascript is a strange programming language if we view it in this way, because it allows you to do both. The problem here is that it
+          is not tuned to be either a OOP- or a functional programming language. That's why lots of people say JS is an impure programming language.
+        </p>
+      </section>
+
+      <section>
+        <h3>Object oriented VS functional</h3>
+
+        <h4>Object oriented</h4>
+        <p>
+          As Justus explained it:
+
+          <blockquote>
+            I see OOP as a landscape of things. Its intention is to make talking about code easier, 
+            because it is easier for us to talk about things instead of functions.
+          </blockquote>
+        </p>
+
+        <h5>Pros</h5>
+        <ul>
+          <li>
+            Reusability - OOP uses objects which can be used over and over again. I's also possible to change objects to better suit your needs using the four 
+            major OOP principles: encapsulation, abstraction, inheritance and polymorphism. I won't go into details what these principles are, 
+            but you can find out more <a href="https://careerkarma.com/blog/object-oriented-languages/">here</a>.
+          </li>
+          <li>
+            Maintainance - All the groundwork of your app is already created in your class definitions. This makes it easy to maintain your code
+            because its all in one place.
+          </li>
+          <li>
+            Security - Classes and methods are often private and cannot be accessed by other objects. This built-in feature makes 
+            OOP very secure.
+          </li>
+          <li>
+            A metaphor to the real world - Objects are reflections of real world things, which makes it easier to shape and discuss your code.
+          </li>
+        </ul>
+
+        <h5>Cons</h5>
+        <ul>
+          <li>
+             Debugging - Because objects are abstract at first and logic can be added later on, it can be difficult to find bugs in your code. 
+             OOP is often preferred because the freedom it gives to the developer, but that freedom can become problematic when too much of that freedom is used.
+          </li>
+          <li>
+            Complexity - The landscape of things can expand into quit a large scenery over time. This can be hard to plan for and once is has taken its shape it hard
+            to morph the lanscape into something different. To fully utlize OOP you will need an architect that creates an protects the underlying design. 
+          </li>
+          <li>
+            Performance - The landscape of things is less performant as they are often larger and requires more computational power to run 
+            than functional languages. This is not always true as some languages are some of the fastest languages on the market like C++. 
+          </li>
+        </ul>
+
+        <h4>Functional programming</h4>
+        <p>
+          As Justus explained it:
+
+          <blockquote>
+            I see functional programming as a street where little factories are located. Each time a function is called, 
+            these little factories are processing the data until you're at the very end off that street
+          </blockquote>
+        </p>
+
+        <h5>Pure functional programming</h5>
+        <p>
+          Pure functional programming has some strict guidelines to how code should be written.
+        </p>
+
+        <ul>
+          <li>Works with recursion, functions and parameters</li>
+          <li>There are no states</li>
+          <li>Function do only one thing. Each function should be just one line of code. If it is more. It already does too much</li>
+          <li>Functions can be reused and do the same thing every time</li>
+          <li>Functions and data are immutable</li>
+          <li>Functions never have side effects</li>
+          <li>Functions never use something outside of its own scope</li>
+          <li>Functions only take 1 argument</li>
+          <li>Functions always return one thing</li>
+          <li>You can not use any for loops. All functions that use loops must be either .map(), .filter() or .reduce().</li>
+        </ul>
+
+        <p>This is quite a list of restrictions, but breaking any of these rules is considered impure functional programming.</p>
+
+        <h5>Immutable objects</h5>
+        <p>Saving objects in a const still allow its properties to be mutable. You can use Object.freeze() to make objects completely immutable.</p>
+
+        <h5>Pros</h5>
+        <ul>
+          <li>Side effects - Everything happens inside the function scope</li>
+          <li>Return value - Every function returns something and the values can be cached</li>
+          <li>Debugging - It is easier to identify bugs compared with OOP</li>
+          <li>Faster development time - You don't need an architect to design a landscape of things. You can start coding right away.</li>
+        </ul>
+
+        <h5>Cons</h5>
+        <ul>
+          <li>Recursion - Recursive functions utilizes a lot of the call stack</li>
+          <li>
+            Terminology - Functional programming uses a lot of abstract terminology that makes it hard to talk about code. It doesn't use
+            metophors as OOP does with objects.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Conclusion</h3>
+        <p>
+          When it comes down to these programming paradigms I have quite some experience in both. I started out as a .NET developer writing object 
+          oriented code in C#. The last few years I have slowly transitioned to a more functional programming style. But that's for an obvious reason. 
+          OOP is perfect to write secure, scalable web apps, but it also takes more development time than taking a more functional approach. I'm using
+          a more functional style because it is faster to write and generates less bugs. This is simply more suitable when you have courses where
+          you have to develop web apps that need to be completed in just a few weeks or days.
+        </p>
+      </section>
+    </article>
+
+    <section>
+      <h3>Sources</h3>
+      <ul>
+        <li><a href="https://www.geeksforgeeks.org/introduction-of-programming-paradigms/">geeksforgeeks.org</a></li>
+        <li><a href="https://careerkarma.com/blog/object-oriented-languages/">careerkarma.com</a></li>
+        <li><a href="https://spin.atomicobject.com/2019/08/29/functional-prog-pros-cons/">atomicobject.com</a></li>
+      </ul>
+    </section>
+
+    <section class="next-up">
+      <h3>Next up</h3>
+      <a href="./optimizing-web-fonts.html" class="card -next">
+        <article>
+          <ul class="card__title-list">
+            <li><h3>Optimizing web fonts</h3></li>
+            <li><h3>View</h3></li>
+          </ul>
+       
+          <p>Research</p>
+          <img src="../images/Typography-fonts.webp">
+        </article>
+      </a>
+    </section>
+
+    <footer>
+       MIT © Leroy van Biljouw
+    </footer>
+  </main>
+</body>
+</html>
