@@ -3,6 +3,14 @@ article {
   font-size: 1.5rem;
 }
 
+article img {
+  background-color: var(--light)
+}
+
+article img.small {
+  width: initial;
+}
+
 blockquote {
   margin: 0;
   padding: 1rem;

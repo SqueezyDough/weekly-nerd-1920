@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png"/>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/article.css">
+  <title>Weekly Nerd - Minor Web Development - CMD Amsterdam</title>
+</head>
+<body>
+  <header class='header'>
+    <a href="../index.html">
+      <div class="logo">
+        <img src="../images/vanbljw.png">
+        <h1>Van bljw</h1>
+      </div>
+    </a>  
+   
+    <div class="swipe">
+      <h2>Web components</h2>
+    </div>
+    
+    <p>
+      Monday, 22nd of June - besides from some documentation work, the minor has come to an end last Friday. During the weekend I've had some time to reflect on this minor. On all the things I have done, but also on the things I haven't done.
+      During this reflection I remembered something I wanted to learn, but hasn't come up during the minor. I've been willing to do something with web components for some time now. Joost has brought up web components to me last year, but I've never done something with it since then. 
+      I think the time has come to finally try to understand this technology. 
+    </p>
+  </header>
+  <main>
+    <article>
+      <section>
+        <h3>What are web components?</h3>
+        <p>
+          Web components is a set of web platform API's that allow for reusable and encapsulated HTMl tags which can be 
+          used in web- pages or apps. This allows for a modular design we know from frameworks as React.js or Vue.js, but web 
+          components do not require any 3rd party library or framework.
+        </p>
+      </section>
+
+      <section>
+        <h3>The three pillars of web components</h3>
+        <p>
+          Web components uses three major technologies that build the foundation to create versatile custom elements 
+          with encapsulated functionality. Custom elements can be reused on a single web page multiple times without causing 
+          code collisons.
+        </p>
+
+        <h4>Custom elements</h4>
+        <p>
+          Web components allows you to create custom HTML elements, that serves as a template for your content. You are in full control to decide
+          how these elements look and behave. Custom HTML elements have a custom tag name, added markup, styling and scripts. All 
+          of this does not collide with other elements because of its encapsulated nature. Here is an example of a custom HTML element:
+
+          <pre>
+            <code>
+&lt;user-card name="Squeezy Doe"&gt;&lt;/user-card&gt;
+            </code>
+          </pre>
+        </p>
+
+        <p>
+          Here I have made a new custom HTMl element. but in order for it to render anything, we first need to register it using JS. Otherwise,
+          the element will just be parsed as a simple &lt;span&gt; element. Let's register our custom element. 
+        </p>
+
+        <pre>
+          <code>
+class UserCard extends HTMLElement {
+  constructor() {
+    // extends the parent: HTML element
+    super() 
+
+    // set text from attribute: name
+    this.innerHTML = `${this.getAttribute('name')}`
+  }
+}
+
+// define custom element
+window.customElements.define('user-card', UserCard)
+          </code>
+        </pre>
+
+        <p>
+          I've defined an attribute name as Squeezy Doe in the custom Element. The constructor is automatically called when the element is rendered.
+          With super() I first inherit all the properties from the HTMLElement parent class. After that I set the text from the name attribute into the element.
+        </p>
+
+        <h5>Differences in custom HTML elements</h5>
+
+        <p>
+          There are two differnt types of elements you can create.
+
+          <ul>
+            <li>
+              <b>Autonomous custom elements</b>- are standalone elements that do not inherit any properties from basic HTML element, but
+            inherit from the HTMLElement class itself. Our code example is a example of a autonomous custom element.
+          </li>
+            <li>
+              <b>Customized built-in elements</b>- do inherit from basic elements like &lt;ul&gt;. These can be used to extend basic HTML functionality, 
+              like making a list element expandable.
+            </li>
+          </ul>
+        </p>
+
+        <h4>Shadow DOM</h4>
+        <p>
+          <blockquote>
+            An important aspect of web components is encapsulation — being able to keep the markup structure, style, and behavior hidden and 
+            separate from other code on the page so that different parts do not clash, and the code can be kept nice and clean. 
+            The Shadow DOM API is a key part of this, providing a way to attach a hidden separated DOM to an element. This article covers 
+            the basics of using the Shadow DOM - <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">MDN</a>
+          </blockquote>       
+        </p>
+
+        <p>
+          As MDN stated, the shadow DOM is seperated from the normal DOM structure and can be attached to a custom element. 
+          This way the features of an element are private and allows us to write code that will not clash with the normal 
+          DOM structure or any other instance of other custom elements.
+
+          <img src="../images/shadow-dom.png" alt="shadow dom"> 
+          <small>Source: https://mdn.mozillademos.org/files/15788/shadow-dom.png</small>
+        </p>
+
+        <p>
+          The shadow DOM allows to attach hidden DOm trees to custom HTML elements. Just like in the normal DOM structure, it starts as a
+          root. called the shadow root, and other nodes can be a child af that root. The shadow DOM has some added terminology to keep track of.
+        </p>
+
+        <ul>
+          <li><b>Shadow host</b> - The regular DOM node that the shadow DOM is attached to</li>
+          <li><b>Shadow tree</b> - The DOM tree inside the shadow DOM</li>
+          <li><b>Shadow boundary</b> - This is where the regular DOM ends and the shadow DOM begins</li>
+          <li><b>Shadow root</b> - The root node of the shadow DOM tree</li>
+        </ul>
+
+        <p>
+          The nodes in the shadow DOM work in exactly the same way as in the regular DOM tree. You can add/remove children- or parent nodes or 
+          add styling to a node or the entire DOm tree. It's up to you how what you want to do with it. The big difference between a shadow
+          DOM and a regular DOM is that nothing that is defined in a shadow DOM can effect the outside.
+        </p>
+
+        <h5>Modifying our custom element</h5>
+
+        <p>
+          Now we know the basic of the shadow DOM let's create an example by modifying our custom HTML element.
+
+          <blockquote>
+            Notice the possibilities of web components. You don't have to use all 3 technologies. If you just want to use custom HTML elements, that's
+            perfectly reasonable. 
+          </blockquote>
+        </p>
+
+        <p>
+          The first thing we need to do is to attach a shadow DOM to our custom element.
+          
+          <pre>
+            <code>
+this.attachShadow({ mode: 'open' })
+            </code>
+          </pre>
+        </p>
+
+        <p>
+          The attachShadow method comes with two options. It can either be set to open or closed. Ik you choose mode: closed you won't be able to 
+          access the shadow DOM from the outside. Built-in elements that also have a shadow DOM like &lt;video&gt; elements always are closed.
+        </p>
+
+        <p>
+          Now lets add a new attribute to our custom element so it also contains an avatar url.
+
+          <pre>
+            <code>
+&lt;h3&gt;Web components&lt;/h3&gt;
+&lt;user-card name="Squeezy Doe" avatar="https://randomuser.me/api/portraits/men/42.jpg"&gt;&lt;/user-card&gt;
+            </code>
+          </pre>
+
+          The custom element now has a attribute that has a link to an API that can give random user information. In this case a 
+          profile picture. I've also added a header element. This will be used to demonstrate encapsulation.
+        </p>
+
+        <p>
+          The last part is to add HTMl to our custom element that hasw place for the name and the avatar.
+
+          <pre>
+            <code>
+this.shadowRoot.innerHTML = `
+&lt;style&gt;
+  h3 {
+    color: red
+  }
+  &lt;/style&gt;
+&lt;div class="user-card"&gt;
+&lt;img&gt;
+  &lt;div&gt;
+    &lt;h3&gt;&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+`
+            </code>
+          </pre>
+
+          Our user card now has an image and a header element. I've added some styling that makes the header red.
+        </p> 
+        
+        <p>
+          Lets add the data from the attributes to the image and header elements.
+          <pre>
+            <code>
+// set text from attribute: name
+this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name')
+
+// set img from attribute: avatar
+this.shadowRoot.querySelector('img').src = this.getAttribute('avatar')
+            </code>
+          </pre>
+        </p>
+
+        <p>
+          <img class="small" src="../images/card-shadow-root.png" alt="demo shadow dom">
+
+          Our card is now rendered on the homepage. It has the avatar and name we privided as attributes in the custom element.
+          Notice how the header from the custom element is red, as specified in the shadow DOM, but it is not applied on the header outside
+          the custom element.
+        </p>
+
+        <h4>HTML templates</h4>
+        <p>
+          Looking at our previous example the HTML looks like something we want to reuse at a later time. This is where HTML templates
+          come in the picture. HTML templates are little reusable snippets of code that is present inside the normal HTML flow
+          but won't be immediately rendered. This is perfect if we want to use it at a later time. 
+        </p>
+
+        <p>
+          Lets first create a new template element and store out HTML in there.
+          <pre>
+            <code>
+const template = document.createElement('template')
+template.innerHTML = `
+  &lt;style&gt;
+    h3 {
+      color: red
+    }
+  &lt;/style&gt;
+  &lt;div class="user-card"&gt;
+    &lt;img&gt;
+    &lt;div&gt;
+      &lt;h3&gt;&lt;/h3&gt;
+      &lt;div class="info"&gt;
+        &lt;p&gt;Email&lt;/p&gt;
+        &lt;p&gt;Phone&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;button&gt;hide info&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+            </code>
+          </pre>
+
+          I've added Phone and Email here too so I can use slots later. We can now append out template to the shadow DOM.
+
+          <pre>
+            <code>
+this.shadowRoot.appendChild(template.content.cloneNode(true))
+            </code>
+          </pre>
+
+          We use cloneNode() to create a new instance and set it to true to also clone the child elements.
+        </p>
+
+        <h5>Slots</h5>
+        <p>
+          Right now our web component is a bit static. It can inly show a single value at a time. We can add some flexibilty by adding
+          slots to our component. Slots can be identified using a name attribute. It's very similar to how we defined our avatar or name.
+          Slots allow you to use placeholders that can be filled with any markup fragment later when the element is used in the markup.
+        </p>
+
+        <p>
+          So to fill the phone or email parts of our card we can add slots. First lets add the slots to our component.
+
+          <pre>
+            <code>
+&lt;user-card name="Squeezy Doe" avatar="https://randomuser.me/api/portraits/men/42.jpg"&gt;
+  &lt;div slot="email"&gt;SqueezyDoe@gmail.com&lt;/div&gt;
+  &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
+&lt;/user-card&gt;     
+            </code>
+          </pre>
+          Now the only thing we need to do is to use the slots in our template. Lets change our phone and email part from the template to slots as well.
+
+          <pre>
+            <code>
+&lt;div class="info"&gt;
+  &lt;p&gt;&lt;slot name="email"&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;slot name="phone"&gt;&lt;/p&gt;
+  &lt;button&gt;hide info&lt;/button&gt;
+&lt;/div&gt;
+            </code>
+          </pre>
+
+          By adding a name attribute to the slot in our template we can identify them as the email or phone slot. That's all we not to do
+          to add some flexibilty to our component.
+
+          <img class="small" src="../images/slots.png" alt="slots">
+        </p>
+
+        <h5>Adding an event</h5>
+        <p>
+          You might have noticed the Hide info button in our template. We can use this button to add an event to the component that
+          hides the info on a button click. We need an event listerner for that. I'll put the event listener in a lifecycle method
+          connectedCallback(). connectedCallback() is called every time the element is inserted into the DOM.
+
+          <pre>
+            <code>
+connectedCallback() {
+  this.shadowRoot.querySelector('#toggle-info').
+    addEventListener('click', () => {
+    this.toggleInfo()
+  })
+}
+            </code>
+          </pre>
+
+          In the connectedCallback() method we add an event listener on the button element. Every time it is clicked the toggleInfo method
+          is called.
+        </p>
+
+        <p>
+          The toggleInfo method is defined within our class. It's a simple function that shows or hides the info from the card.
+
+          <pre>
+            <code>
+toggleInfo() {
+  this.showInfo = !this.showInfo
+
+  const info = this.shadowRoot.querySelector('.info')
+  const toggle_btn = this.shadowRoot.querySelector('#toggle-info')
+
+  if (this.showInfo) {
+    info.style.display = 'block'
+    toggle_btn.innerText = 'Hide info'
+  } else {
+    info.style.display = 'none'
+    toggle_btn.innerText = 'Show info'
+  }
+}
+            </code>
+          </pre>
+        </p>
+
+        <p>
+          Now the only thing left is to remove the event listener when the element is removed from the DOM.
+
+          <pre>
+            <code>
+disconnectedCallback() {
+  this.shadowRoot.querySelector('#toggel-info').
+    removeEventListener()
+}
+            </code>
+          </pre>
+        </p>
+      </section>
+
+      <section>
+        <h3>Wrapping up</h3>
+        <p>
+          We have made a basic example using the three pillars of web components. We can use these cards anywhere without conflicting with other code.
+          Lets add some extra styling and multiply these cards to finish our example.  Here's the end result!
+
+          <img class="small" src="../images/wc.png" alt="final result">        
+        </p>
+        
+        <h4>Full code</h4>
+        <p>
+          HTML
+
+          <pre>
+            <code>       
+&lt;h3&gt;Web components&lt;/h3&gt;
+&lt;user-card name="John Doe" avatar="https://randomuser.me/api/portraits/men/52.jpg"&gt;
+  &lt;div slot="email"&gt;John@gmail.com&lt;/div&gt;
+  &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
+&lt;/user-card&gt;
+
+&lt;user-card name="Jane Doe" avatar="https://randomuser.me/api/portraits/women/12.jpg"&gt;
+  &lt;div slot="email"&gt;Jane@gmail.com&lt;/div&gt;
+  &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
+&lt;/user-card&gt;
+
+&lt;user-card name="Squeezy Doe" avatar="https://randomuser.me/api/portraits/men/42.jpg"&gt;
+  &lt;div slot="email"&gt;SqueezyDoe@gmail.com&lt;/div&gt;
+  &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
+&lt;/user-card&gt;
+
+&lt;user-card name="SqueezyDough" avatar="./images/SD.jpg"&gt;
+  &lt;div slot="email"&gt;SqueezyDough@outlook.com&lt;/div&gt;
+  &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
+&lt;/user-card&gt;           
+            </code>
+          </pre>
+        </p>
+
+        <p>
+          JS
+
+          <pre>
+            <code>
+const template = document.createElement('template')
+template.innerHTML = `
+  &lt;style&gt;
+    .user-card {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-gap: 1rem;
+      width: 400px;
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      background-color: #eee;
+      border-top: 3px solid red;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+    }
+
+    .user-card img {
+      width: 100%;
+    }
+    h3 {
+      color: red
+    }
+  &lt;/style&gt;
+  &lt;div class="user-card"&gt;
+    &lt;img&gt;
+    &lt;div&gt;
+      &lt;h3&gt;&lt;/h3&gt;
+      &lt;div class="info"&gt;
+        &lt;p&gt;&lt;slot name="email"&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;slot name="phone"&gt;&lt;/p&gt;      
+      &lt;/div&gt;
+      &lt;button id="toggle-info"&gt;Hide info&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+`
+ 
+class UserCard extends HTMLElement {
+  constructor() {
+    // extends the parent: HTML element
+    super() 
+
+    this.showInfo = true
+
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template.content.cloneNode(true))
+
+    // set text from attribute: name
+    this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name')
+
+    // set img from attribute: avatar
+    this.shadowRoot.querySelector('img').src = this.getAttribute('avatar')
+  }
+
+  toggleInfo() {
+    this.showInfo = !this.showInfo
+
+    const info = this.shadowRoot.querySelector('.info')
+    const toggle_btn = this.shadowRoot.querySelector('#toggle-info')
+
+    if (this.showInfo) {
+      info.style.display = 'block'
+      toggle_btn.innerText = 'Hide info'
+    } else {
+      info.style.display = 'none'
+      toggle_btn.innerText = 'Show info'
+    }
+  }
+
+  connectedCallback() {
+    this.shadowRoot.querySelector('#toggle-info').
+      addEventListener('click', () => {
+      this.toggleInfo()
+    })
+  }
+
+  disconnectedCallback() {
+    this.shadowRoot.querySelector('#toggel-info').
+      removeEventListener()
+  }
+}
+
+// define custom element
+window.customElements.define('user-card', UserCard)
+            </code>
+          </pre>
+        </p>
+      </section>
+
+      <section>
+        <h3>Conclusion</h3>
+        <p>
+          Web components can be very powerful to create highly maintanable, easily debuggable HTML elements that can be reused anywhere in your webpage,
+          without causing conflicts with other elements. Its encapsulated nature makes it perfect for complex web apps.
+        </p>
+
+        <p>
+          Each pillar provides its own use case as well, that also is perfectly sensable to use on its own, but combined povide an excellent foundation
+          for your next web app.
+        </p>
+      </section>
+
+      <section>
+        <h3>Sources</h3>
+        <ul>
+          <li>
+            <a href="https://www.youtube.com/watch?v=PCWaFLy3VUo">Traversy media</a>
+          </li>
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">MDN</a>
+          </li>
+          <li>
+            <a href="https://css-tricks.com/an-introduction-to-web-components/">CSS Tricks</a>
+          </li>
+        </ul>
+      </section>
+    <footer>
+       MIT © Leroy van Biljouw
+    </footer>
+  </main>
+</body>
+</html>

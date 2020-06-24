@@ -27,7 +27,7 @@ body {
   line-height: 1.5;
   margin: 0 auto;
   width: 100%;
-  max-width: 75rem;
+  max-width: 76rem;
   padding: 0 3%;
   background-color: var(--off-white);
 }
@@ -41,8 +41,18 @@ h2::before {
   content: '.';
 }
 
-h4, h5 {
-  font-family: Futura;
+h3 {
+  font-size: 2rem;
+}
+
+h4::before, h5::before {
+  content: '';
+  display: inline-block;
+  margin: 0 1rem 0 0;
+  transform: translateY(-.25rem);
+  background-color: var(--dark);
+  height: 2px;
+  width: 20px;
 }
 
 a {
