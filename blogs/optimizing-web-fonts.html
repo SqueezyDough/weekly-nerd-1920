@@ -17,16 +17,16 @@
         <img src="../images/vanbljw.png">
         <h1>Van bljw</h1>
       </div>
-    </a>  
-   
+    </a>
+
     <div class="swipe">
       <h2>Optimizing web fonts</h2>
     </div>
-    
+
     <p>
-      " Webfont optimization is a critical piece of the overall performance strategy. Each font is an additional resource, and some fonts may block rendering of the text, 
-      but just because the page is using webfonts doesn't mean that it has to render slower. On the contrary, optimized fonts, combined with a judicious strategy for how they are 
-      loaded and applied on the page, can help reduce the total page size and improve page rendering times. " - <a href='https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization'>Web fundamentals</a> 
+      " Webfont optimization is a critical piece of the overall performance strategy. Each font is an additional resource, and some fonts may block rendering of the text,
+      but just because the page is using webfonts doesn't mean that it has to render slower. On the contrary, optimized fonts, combined with a judicious strategy for how they are
+      loaded and applied on the page, can help reduce the total page size and improve page rendering times. " - <a href='https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/webfont-optimization'>Web fundamentals</a>
     </p>
   </header>
   <main>
@@ -34,17 +34,17 @@
       <section>
         <h3>What are web fonts?</h3>
         <p>
-          When you've ever opened a document in Word or Powerpoint you must have seen the option to select several different fonts, like Times New Roman, Courier or Arial to just name a few. 
+          When you've ever opened a document in Word or Powerpoint you must have seen the option to select several different fonts, like Times New Roman, Courier or Arial to just name a few.
           These are fonts that are installed on your computer. Some fonts are exclusive to the operating system you are running, but lots of them can be used with either a Windows or MacOS operating system.
         </p>
-  
+
         <p>
-          When we place this in the context of the web we have to make an important decision. Fonts that are pre-installed, (and cross-compatible) on a device are known as web-safe fonts. Selecting one of these fonts will always work, because they are already installed on your users device. 
+          When we place this in the context of the web we have to make an important decision. Fonts that are pre-installed, (and cross-compatible) on a device are known as web-safe fonts. Selecting one of these fonts will always work, because they are already installed on your users device.
           Using these fonts is very good for your performance as well, but also can make your website feel more generic. Sometimes you look for a font that stands out from the standard fonts.
         </p>
-  
+
         <p>
-          Thats where web fonts come in. Web fonts are custom fonts anyone can create or licensed from another creator. Using a web-font requires the browser to download the font, before they can be displayed. 
+          Thats where web fonts come in. Web fonts are custom fonts anyone can create or licensed from another creator. Using a web-font requires the browser to download the font, before they can be displayed.
         </p>
       </section>
 
@@ -52,10 +52,10 @@
         <h3>The issue with web fonts</h3>
         <p>
           Web fonts are great for making a unique website that looks great, but come at a big performance cost, especially when you want to use multiple web fonts together. Your browser easily needs to download multiple MB's to just download a single font.
-  
+
           <blockquote>
-            Each font you use is an additional resource that visitors must download when accessing your site, 
-            adding to the time it takes to load your pages. " - <a href='https://wp-rocket.me/blog/guide-web-font-optimization/'>WP Rocket</a> 
+            Each font you use is an additional resource that visitors must download when accessing your site,
+            adding to the time it takes to load your pages. " - <a href='https://wp-rocket.me/blog/guide-web-font-optimization/'>WP Rocket</a>
           </blockquote>
         </p>
 
@@ -65,7 +65,7 @@
           <img src="../images/d777a760e10ac303bc2a197dbce81421.png">
         </p>
       </section>
-     
+
       <section>
         <h3>Optimizing web fonts</h3>
         <p>
@@ -76,17 +76,17 @@
           <h4>The render tree</h4>
           <p>
             By default, fonts are only rendered when the render tree is completely constructed.
-  
+
             <blockquote>
-              Lazy loading of fonts carries an important hidden implication that may delay text rendering: the browser must construct the render tree, which is dependent on the DOM and CSSOM trees, 
-              before it knows which font resources it needs in order to render the text. As a result, font requests are delayed well after other critical resources, 
+              Lazy loading of fonts carries an important hidden implication that may delay text rendering: the browser must construct the render tree, which is dependent on the DOM and CSSOM trees,
+              before it knows which font resources it needs in order to render the text. As a result, font requests are delayed well after other critical resources,
               and the browser may be blocked from rendering text until the resource is fetched.
             </blockquote>
-  
+
             <img src="../images/render-tree.png">
           </p>
           <p>
-            Web fonts are rendered after the Document Object Model (DOM) is fully constructed, requests for the CSS, JS and other resources are dispatched. After thate The CSS Object Model (CSSOM) 
+            Web fonts are rendered after the Document Object Model (DOM) is fully constructed, requests for the CSS, JS and other resources are dispatched. After thate The CSS Object Model (CSSOM)
             will be constructed and it will combine it with the DOM to construct the render tree. Now finally the requests are sent for the web fonts and the first content is painted on the page.
             If the font is not yet available, you won't see anything. When it does finally paint the pixels you will see the fallback text gets replaced by the web font.
           </p>
@@ -110,7 +110,7 @@
           <p>
             When a font takes more time to load then usual you can specify what the browser should do when the time for the download times out. A request for a font usually times out after 3 seconds, but this might differ per browser.
           </p>
-         
+
 
           <h5>The font display timeline</h5>
           <p>
@@ -143,7 +143,7 @@
         <section>
           <h4>Give priority to your local fonts</h4>
           <p>
-            When you already have a web font installed it doesn't make much sense to download it again. When adding font-faces you can specify which local font you want to use first, If the user doesn;t have it installed it can still download it as usual. Let's take the code I've posted above and 
+            When you already have a web font installed it doesn't make much sense to download it again. When adding font-faces you can specify which local font you want to use first, If the user doesn;t have it installed it can still download it as usual. Let's take the code I've posted above and
             modify it a bit to first take the local font.
 
             <pre>
@@ -164,9 +164,9 @@
         <section>
           <h4>Use an optimized font format</h4>
           <p>
-            Using the right font format speeds up load time for your font. The problem here is that not all font formats have support on all browsers, so you need to make sure you provide fallbacks for when the faster font format is not supported. 
+            Using the right font format speeds up load time for your font. The problem here is that not all font formats have support on all browsers, so you need to make sure you provide fallbacks for when the faster font format is not supported.
             There are four font formats to look at:
-          
+
             <ul>
               <li>
                 <em>Embedded Open Type (.eot)</em> - Designed by Microsoft, only IE support.
@@ -203,12 +203,12 @@ font.load().then(function() {
   document.fonts.add(font);
   document.body.style.fontFamily = "Futura, serif";
 
-  // OR... by default the content is hidden, 
+  // OR... by default the content is hidden,
   // and it's rendered after the font is available
   const content = document.getElementById("content");
   content.style.visibility = "visible";
 
-  // OR... use your own render strategy! 
+  // OR... use your own render strategy!
 });
               </code>
             </pre>
@@ -231,7 +231,7 @@ font.load().then(function() {
       <section>
         <h3>Conclusion</h3>
         <p>
-          Optimizing web fonts is very important if you strive to a performant website. Understanding how en when fonts are being rendered is only the first step of the solution. Optimizing web fonts includes lots of different approaches that 
+          Optimizing web fonts is very important if you strive to a performant website. Understanding how en when fonts are being rendered is only the first step of the solution. Optimizing web fonts includes lots of different approaches that
           ultimately makes it a complex issue. I've tried to provide some simple solutions that will definitely speed up your load time, but do understand there is much more I haven't covered yet.
         </p>
       </section>
@@ -263,9 +263,9 @@ font.load().then(function() {
             <li><h3>Optimizing web fonts</h3></li>
             <li><h3>View</h3></li>
           </ul>
-       
+
           <p>Research</p>
-          <img src="../images/web-components.webp">
+          <img src="../images/web-components.png">
         </article>
       </a>
     </section>

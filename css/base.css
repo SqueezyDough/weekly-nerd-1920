@@ -84,7 +84,7 @@ section:last-of-type {
 footer {
   padding: 3rem 0;
   font-size: 1rem;
-} 
+}
 
 article section {
   margin: 2rem 0 6rem;
@@ -131,7 +131,7 @@ article section img {
 .swipe h2 {
   opacity: 0;
   font-size: 10rem;
-  font-family: Futura;
+  font-family: Futura, sans-serif;
   text-align: center;
   color: var(--dark);
   animation: slideUp 1s ease-out forwards;
