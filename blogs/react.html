@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png"/>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/article.css">
+  <link rel="stylesheet" href="../css/card.css">
+  <title>Weekly Nerd - Minor Web Development - CMD Amsterdam</title>
+</head>
+<body>
+  <header class='header'>
+    <a href="../index.html">
+      <div class="logo">
+        <img src="../images/vanbljw.png">
+        <h1>Van bljw</h1>
+      </div>
+    </a>  
+   
+    <div class="swipe">
+      <h2>Learning react.js</h2>
+    </div>
+    
+    <p>
+      I need to tell you something. Next year I will start as a frontend developer intern at INFO. 
+      During my interview I said I knew they were using the React.js framework and this is something I wanted to learn before my first day there.
+      I didn't just write the last article about web components just because I was interested in the technology. At CMD we always learn to first
+      understand the technology or paradigm that lies as the foundation for a framework or library, before we use the library or framework itself. 
+      This is why I chose to do web components first, and now I will take it a step further to achieve my goal of learning a frontend framework like react.
+    </p>
+  </header>
+  <main>
+    <article>
+      <section>
+        <h3>What is react.js?</h3>
+        <p>
+          React is a frontent framework for building user interfaces. Just like with web components, with react you can
+          create modular building blocks that are completely autonomous. The good thing about react is that the state
+          of a component can change without page reload.
+        </p>
+       
+        <h4>Declaritive</h4>
+        <p>
+          With React it is easy to manage the state of your component. Components update and rerender themselves when the data
+          of your component changes. This means no page reload is required when the data is updated. 
+        </p> 
+        
+        <h4>Component Based</h4>
+        <p>
+          Just like in web components, Reacts components are also fully encapsulated that can manage their own state. This makes it easy 
+          to compose these components on a web page without having to worry about code collision. 
+        </p> 
+
+        <h4>JSX</h4>
+        <p>
+          In react everything you build is a component. The interesting thing about React is that components can also have subcomponents
+          , which are components that can be used as its own component or can be nested inside another component. This makes React
+          really flexible. JSX is Reacts own version of HTML that allow uou to nest these custom HTML elements.
+        </p>
+
+        <h4>Differences between states and props</h4>
+        <p>
+          A component in React can both have states and props. The differences between these could be a bit vague at first, as it was also 
+          vague for me the first time. The most important difference is that props are handled outside of the component and also must be
+          updated outside the component, while states are handled inside the component and must therefore be handled
+          inside the component.
+        </p>
+
+        <p>
+          Another important difference is that any change to a state will rerender that section of your application. Props
+          can't be changed by State and therefore must be updated outside of the component. It could be that the prop is
+          managed by another State outside of the inner component. When that state changes it will change the props given to the inner component 
+          and rerender itself. This is very important to understand when you are trying to manage your data using components and 
+          subcomponents.
+        </p>
+      </section>
+
+      <section>
+        <h3>Creating a Todo list with React</h3>
+        <p>
+          I have worked on a small project where you can create a todo list that shows the basic functionality of React. You can do much more things with React, for to keep this
+          article concise I've mainly focussed on the basics. In this article I'll highlight some code from that project to provide some 
+        </p>
+
+        <h4>Setting up</h4>
+        <p>
+          To create a react application to first need an empty folder that has no capital letters of spaces in its name.
+          You can then run the following command in your terminal:
+
+          <pre>
+            <code>
+  npx create-react-app .
+            </code>
+          </pre>
+
+          This will install react into your folder. It should take a few minutes to get everything ready. Once all the
+          files are installed you get a basic application structure for your app. I have deleted all the standard markup
+          and added files for my todo list.
+
+          <img class="small" src="../images/folder.png" alt="folder structure">
+
+          To run the application you can use
+
+          <pre>
+            <code>
+npm start
+            </code>
+          </pre>
+        </p>
+
+        <h4>Rendering the appv</h4>
+        <p>
+          When looking at the index.html file you see that there only is an empty div element.
+
+          <pre>
+            <code>
+&lt;div id="root"&gt;&lt;/div&gt;
+            </code>
+          </pre>
+
+          When we look at the index.js file in the src folder we see that this empty div is used to render the application.
+
+          <pre>
+            <code>
+ReactDOM.render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+  document.getElementById('root')
+)
+            </code>
+          </pre>
+
+          ReactDOM.render() takes two arguments. The first argument takes the App component we want to render and the second take
+          the element that serves as a target container for the content.
+        </p>
+      </section>
+
+      <h4>Adding markup</h4> 
+      <p>
+        In the App.js component I can now add markup for my Todos. The problem is that I need to return both the Todo list and 
+        the buttons to create or clear completed todos. As you know a return only can return a single value. In React you
+        can use Fragments to wrap different HTML elements together so they can be returned as a single value.
+        
+        <pre>
+          <code>
+return (
+  &lt;&gt;
+    &lt;TodoList todos={todos} toggleTodo={toggleTodo} /&gt;
+    &lt;input ref={todoNameRef} type="text" /&gt;
+    &lt;button onClick={handleAddTodo}&gt;Add Todo&lt;/button&gt;
+    &lt;button onClick={handleClearTodos}&gt;Clear completed todos&lt;/button&gt;
+    &lt;div&gt;{todos.filter(todo =&gt; !todo.complete).length} left to do&lt;/div&gt;
+  &lt;/&gt;
+)
+          </code>
+        </pre>
+
+        You already see some props en events in this markup, however to keep things simple I only focus on the TodoList for now.
+      </p>
+
+      <h4>Managing the state</h4>
+      <p>
+        I can manage the state of my component to react on user interaction. For my Todo list that is when the user sets
+        a todo as completed using a checkbox. To enable this I can use the useState hook from React to rerender the 
+        component every time the data changes.
+
+        <pre>
+          <code>
+const [todos, setTodos] = useState([])
+
+...
+
+&lt;TodoList todos={todos} toggleTodo={toggleTodo} /&gt;
+          </code>
+        </pre>
+
+        The useState hook always returns an arrays. We can use destructering where the first variable has all of our todos
+        and the second variable is a function that update the todos. We can add the todos from our state as a prop to our Todolist component.
+      </p>
+
+      <h4>The TodoList component</h4>
+      <p>
+        The Todolist component is al list that has all of our todos.
+        In this component we can now use the prop to map over all our todos and render a todo that is also a seperate component.
+        When using map() to render new components you need to be careful however, because when a component gets updated React doesn't 
+        know which component to update because it can't destinguish them from each other. To fix this you can add a key attribute
+        to the component that has a unique Id.
+
+        <pre>
+          <code>
+import Todo from './Todo'
+
+export default function TodoList({ todos, toggleTodo }) {
+  return (
+    todos.map(todo => {
+      return &lt;Todo key={todo.id} toggleTodo={toggleTodo} todo={todo} /&gt;
+    })
+  )
+}
+          </code>
+        </pre>
+
+        In our Todo component we add 2 new props that give a name of the todo and we want to give it a value
+        that tells our Todo component whether its checkbox is checked or not.
+      </p>
+
+      <h4>The Todo component</h4>
+      <p>
+        The last component is our Todo component itself that has the todo name and complete checkbox.
+
+        <pre>
+          <code>
+export default function Todo({ todo, toggleTodo }) {
+  function handleTodoClick() {
+    toggleTodo(todo.id)
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;label&gt;
+        &lt;input type="checkbox" checked={todo.complete} onChange={handleTodoClick} /&gt;
+        {todo.name}
+      &lt;/label&gt;
+    &lt;/div&gt;
+  )
+}
+          </code>
+        </pre>
+
+        Besides the name and the complete value we also want to handle a click event for when the user clicks the checkbox.
+        We'll have to write a different event for this, so in out Todo component I have made a handleTodoClick function that calls
+        another function we've got from the TodoList component as a prop.
+      </p>
+
+      <h4>Handling events</h4>
+      <p>
+        We've passed the toggleTodo function as a prop all the way from our App component. Here we can create the function to
+        toggle completed todos.
+
+        <pre>
+          <code>
+// set todo complete to opposite value
+function toggleTodo(id) {
+  const newTodos = [...todos]
+  const todo = newTodos.find(todo => todo.id === id)
+  todo.complete = !todo.complete
+  setTodos(newTodos)
+}
+          </code>
+        </pre>
+
+        This function takes the todo Id as an argument and sets the complete property to the opposite value.
+      </p>
+
+      <p>
+        In our HTML amrkup I also added a create Todo button. This also has a click event to create new todos. Lets make that 
+        function now as well.
+
+        <pre>
+          <code>
+// handle add todo button
+function handleAddTodo(e) {
+  const name = todoNameRef.current.value
+  if (name === '') return
+  setTodos(prevTodos => {
+    return [...prevTodos, {id: uuidv4(), name: name, complete: false}]
+  })
+  todoNameRef.current.value = null
+}
+          </code>
+        </pre>
+        This function takes the value from the text input to create a new todo. Notice that I reference the text input using 
+        ref={todoNameRef}. In react it is possibe to add references to other elements, so it can be used by my function.
+      </p>
+
+      <p>
+        In this function I also use the setTodos function from my state to create new todos. Here I use prevTodos as argument 
+        for all my previous todos and I add a new todo to the array with an unique uuid.
+      </p>
+      
+      <h4>Persistant data</h4>
+      <p>
+        Now we can both add todos and complete them using the checkbox. When the user clicks on the checkbox the Todo component
+        automatically updates. 
+        <img class="small" src="../images/todo.png" alt="todos">
+        
+        
+        The problem here is that if we reload our page the todos do not persist. 
+        <img class="small" src="../images/clear.png" alt="todos">
+
+        To fix this we can use localStorage to save the todos so the component loads the data. We also need
+        to use a new React hook that excecutes every time the component is rerendered. This hook is called
+        useEffect().
+        
+        <pre>
+          <code>
+// get stored todos
+useEffect(() => {
+  const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STOARGE_KEY))
+  if (storedTodos) setTodos(storedTodos)
+}, [])
+
+// save todos to local storage every time the array changes
+useEffect(() => {
+  localStorage.setItem(LOCAL_STOARGE_KEY, JSON.stringify(todos))
+}, [todos])
+          </code>
+        </pre>
+
+        The first useEffect function gets all the todos from local storage. The second excecutes whenever the data changes.
+        Whats important here is that useEffect takes a function and a value as a second argument. Whenever that value changes the function
+        will be called and the component will be rerendered. For getting data we only want to to this once. We can do this by just 
+        giving it an empty array. Because that array will never change the function will only run once.
+      </p>
+
+      <p>
+        With that our TodoList will now also be persitant and our React app is compeltely finished.
+      </p>
+    </article>
+
+    <section>
+      <h3>Conclusion</h3>
+      <p>
+        I really REALLY like React. I've always liked to make my back-end as modular as I can, but on the front-end there was always some modularity
+        (I've always used SCSS and handlebars) but not much.
+        I couldn't really create nice autonomous components that can manage their own stuff and making it refresh without page reload was always a pain in the ass. 
+        Now I finally got the basics of React I want to keep
+        using this for a while to create some nice readable, flexible and maintanable code, without having to strip large parts of my frontend logic when I 
+        want to make some changes. Luckily I'll have time enough for that during my internship at INFO.
+      </p>
+      <p>
+        I've used the Weekly Nerds to fill some gaps from the minor. The things I have researched were things I didn't get to learn during the 
+        minor. I knew this beforehand ofcourse, and this part of the minor gives you some extra free space to research whatever you think is
+        important for this moment or next year.  
+      </p>
+    </section>
+
+    <section>
+      <h3>Sources</h3>
+      <ul>
+        <li>
+          <a href="https://www.youtube.com/watch?v=1wZoGFF_oi4">WebdevSimplified - What Is React And Why You Need To Know It</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=IYvD9oBCuJI&list=PLZlA0Gpn_vH_NT5zPVp18nGe_W9LqBDQK&index=2">WebdevSimplified - React State Vs Props</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=hQAHSlTtcmY&list=PLZlA0Gpn_vH_NT5zPVp18nGe_W9LqBDQK&index=6">WebdevSimplified - Learn react in X minutes</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=eX_L39UvZes">uidotdev - Why React Hooks?</a>
+        </li>
+        <li>
+          <a href="https://reactjs.org/">React.org</a>
+        </li>
+      </ul> 
+    </section>
+
+    <footer>
+       MIT © Leroy van Biljouw
+    </footer>
+  </main>
+</body>
+</html>

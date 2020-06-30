@@ -7,6 +7,7 @@
   <link rel="shortcut icon" type="image/png" href="../images/favicon.png"/>
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/article.css">
+  <link rel="stylesheet" href="../css/card.css">
   <title>Weekly Nerd - Minor Web Development - CMD Amsterdam</title>
 </head>
 <body>
@@ -119,12 +120,12 @@ window.customElements.define('user-card', UserCard)
           This way the features of an element are private and allows us to write code that will not clash with the normal 
           DOM structure or any other instance of other custom elements.
 
-          <img src="../images/shadow-dom.png" alt="shadow dom"> 
-          <small>Source: https://mdn.mozillademos.org/files/15788/shadow-dom.png</small>
+          <img src="../images/shadow-DOM.png" alt="shadow DOM"> 
+          <small>Source: https://mdn.mozillademos.org/files/15788/shadow-DOM.png</small>
         </p>
 
         <p>
-          The shadow DOM allows to attach hidden DOm trees to custom HTML elements. Just like in the normal DOM structure, it starts as a
+          The shadow DOM allows to attach hidden DOM trees to custom HTML elements. Just like in the normal DOM structure, it starts as a
           root. called the shadow root, and other nodes can be a child af that root. The shadow DOM has some added terminology to keep track of.
         </p>
 
@@ -137,7 +138,7 @@ window.customElements.define('user-card', UserCard)
 
         <p>
           The nodes in the shadow DOM work in exactly the same way as in the regular DOM tree. You can add/remove children- or parent nodes or 
-          add styling to a node or the entire DOm tree. It's up to you how what you want to do with it. The big difference between a shadow
+          add styling to a node or the entire DOM tree. It's up to you how what you want to do with it. The big difference between a shadow
           DOM and a regular DOM is that nothing that is defined in a shadow DOM can effect the outside.
         </p>
 
@@ -173,11 +174,11 @@ this.attachShadow({ mode: 'open' })
           <pre>
             <code>
 &lt;h3&gt;Web components&lt;/h3&gt;
-&lt;user-card name="Squeezy Doe" avatar="https://randomuser.me/api/portraits/men/42.jpg"&gt;&lt;/user-card&gt;
+&lt;user-card name="Squeezy Doe" avatar="https://ranDOMuser.me/api/portraits/men/42.jpg"&gt;&lt;/user-card&gt;
             </code>
           </pre>
 
-          The custom element now has a attribute that has a link to an API that can give random user information. In this case a 
+          The custom element now has a attribute that has a link to an API that can give ranDOM user information. In this case a 
           profile picture. I've also added a header element. This will be used to demonstrate encapsulation.
         </p>
 
@@ -219,7 +220,7 @@ this.shadowRoot.querySelector('img').src = this.getAttribute('avatar')
         </p>
 
         <p>
-          <img class="small" src="../images/card-shadow-root.png" alt="demo shadow dom">
+          <img class="small" src="../images/card-shadow-root.png" alt="demo shadow DOM">
 
           Our card is now rendered on the homepage. It has the avatar and name we privided as attributes in the custom element.
           Notice how the header from the custom element is red, as specified in the shadow DOM, but it is not applied on the header outside
@@ -281,7 +282,7 @@ this.shadowRoot.appendChild(template.content.cloneNode(true))
 
           <pre>
             <code>
-&lt;user-card name="Squeezy Doe" avatar="https://randomuser.me/api/portraits/men/42.jpg"&gt;
+&lt;user-card name="Squeezy Doe" avatar="https://ranDOMuser.me/api/portraits/men/42.jpg"&gt;
   &lt;div slot="email"&gt;SqueezyDoe@gmail.com&lt;/div&gt;
   &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
 &lt;/user-card&gt;     
@@ -379,17 +380,17 @@ disconnectedCallback() {
           <pre>
             <code>       
 &lt;h3&gt;Web components&lt;/h3&gt;
-&lt;user-card name="John Doe" avatar="https://randomuser.me/api/portraits/men/52.jpg"&gt;
+&lt;user-card name="John Doe" avatar="https://ranDOMuser.me/api/portraits/men/52.jpg"&gt;
   &lt;div slot="email"&gt;John@gmail.com&lt;/div&gt;
   &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
 &lt;/user-card&gt;
 
-&lt;user-card name="Jane Doe" avatar="https://randomuser.me/api/portraits/women/12.jpg"&gt;
+&lt;user-card name="Jane Doe" avatar="https://ranDOMuser.me/api/portraits/women/12.jpg"&gt;
   &lt;div slot="email"&gt;Jane@gmail.com&lt;/div&gt;
   &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
 &lt;/user-card&gt;
 
-&lt;user-card name="Squeezy Doe" avatar="https://randomuser.me/api/portraits/men/42.jpg"&gt;
+&lt;user-card name="Squeezy Doe" avatar="https://ranDOMuser.me/api/portraits/men/42.jpg"&gt;
   &lt;div slot="email"&gt;SqueezyDoe@gmail.com&lt;/div&gt;
   &lt;div slot="phone"&gt;06-11233578&lt;/div&gt;
 &lt;/user-card&gt;
@@ -494,34 +495,51 @@ window.customElements.define('user-card', UserCard)
           </pre>
         </p>
       </section>
+    </article>
+ 
+    <section>
+      <h3>Conclusion</h3>
+      <p>
+        Web components can be very powerful to create highly maintanable, easily debuggable HTML elements that can be reused anywhere in your webpage,
+        without causing conflicts with other elements. Its encapsulated nature makes it perfect for complex web apps.
+      </p>
 
-      <section>
-        <h3>Conclusion</h3>
-        <p>
-          Web components can be very powerful to create highly maintanable, easily debuggable HTML elements that can be reused anywhere in your webpage,
-          without causing conflicts with other elements. Its encapsulated nature makes it perfect for complex web apps.
-        </p>
+      <p>
+        Each pillar provides its own use case as well, that also is perfectly sensable to use on its own, but combined povide an excellent foundation
+        for your next web app.
+      </p>
+    </section>
 
-        <p>
-          Each pillar provides its own use case as well, that also is perfectly sensable to use on its own, but combined povide an excellent foundation
-          for your next web app.
-        </p>
-      </section>
+    <section>
+      <h3>Sources</h3>
+      <ul>
+        <li>
+          <a href="https://www.youtube.com/watch?v=PCWaFLy3VUo">Traversy media</a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">MDN</a>
+        </li>
+        <li>
+          <a href="https://css-tricks.com/an-introduction-to-web-components/">CSS Tricks</a>
+        </li>
+      </ul>
+    </section>
 
-      <section>
-        <h3>Sources</h3>
-        <ul>
-          <li>
-            <a href="https://www.youtube.com/watch?v=PCWaFLy3VUo">Traversy media</a>
-          </li>
-          <li>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">MDN</a>
-          </li>
-          <li>
-            <a href="https://css-tricks.com/an-introduction-to-web-components/">CSS Tricks</a>
-          </li>
-        </ul>
-      </section>
+    <section class="next-up">
+      <h3>Next up</h3>
+      <a href="./react.html" class="card -next">
+        <article>
+          <ul class="card__title-list">
+            <li><h3>Learning React.js</h3></li>
+            <li><h3>View</h3></li>
+          </ul>
+       
+          <p>Research</p>
+          <img src="../images/logo-og.png">
+        </article>
+      </a>
+    </section>
+
     <footer>
        MIT © Leroy van Biljouw
     </footer>

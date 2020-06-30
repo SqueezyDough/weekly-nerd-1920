@@ -8,7 +8,13 @@ article img {
 }
 
 article img.small {
+  display: block;
   width: initial;
+  margin-bottom: 3rem;
+}
+
+article ~ section {
+  font-size: 1.5rem;
 }
 
 blockquote {
