@@ -7,10 +7,15 @@ article img {
   background-color: var(--light)
 }
 
-article img.small {
+.small {
   display: block;
   width: initial;
+  max-width: 100%;
   margin-bottom: 3rem;
+}
+
+.offset {
+  margin-top: 6rem;
 }
 
 article ~ section {
